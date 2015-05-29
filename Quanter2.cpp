@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-//#include <magick/api.h>
 #include <Magick++.h>
+
 using namespace Magick;
 
 int main(int argc, char *argv[]){
@@ -21,17 +21,17 @@ int main(int argc, char *argv[]){
 	Image image;
 	Image palette;
 	try {
-    image.read( infile );
+		image.read( infile );
 		palette.read(palettefile);
 		image.compressType(NoCompression);
-    image.map(palette,dither!=0);
+		image.map(palette,dither!=0);
 		image.write( outfile );
 		return 0;
-  }
-  catch( Exception &error )
-    {
+	}
+	catch( Exception &error )
+		{
 			printf("Error converting: %s\n",error.what());
-      return 2;
-    }
+			return 2;
+		}
 	return 3;
 }
